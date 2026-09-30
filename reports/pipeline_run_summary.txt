@@ -1,0 +1,48 @@
+================================================================================
+SHOPFLOW — ETL PIPELINE EXECUTION SUMMARY
+================================================================================
+Execution Timestamp:       2026-09-30 18:29:40
+Total Execution Time:      33.05 seconds
+Overall Pipeline Status:   SUCCESS
+
+--- STEP STATUS BREAKDOWN ---
+  step_1_verify_raw         : SUCCESS
+  step_2_extract            : SUCCESS
+  step_3_profile            : SUCCESS
+  step_4_transform          : SUCCESS
+  step_5_validate           : SUCCESS
+  step_6_load               : SUCCESS
+  step_7_verify_db          : SUCCESS
+  step_8_summary            : SUCCESS
+
+--- RECORD RECONCILIATION ---
+  Raw Input Records:            541,909
+  Transformed Records:          541,909
+  Database Loaded Records:      541,909
+  Row Match Reconciliation:  PERFECT MATCH (0 dropped)
+
+--- DATA QUALITY & NULL COUNTS ---
+  Missing Customer IDs (NULL):  135,080 (Guest checkouts preserved)
+  Missing Descriptions:           1,454 (Flagged as UNSPECIFIED)
+  Exact Duplicate Records:        5,268 (Flagged is_duplicate=1)
+
+--- TRANSACTION CLASSIFICATIONS ---
+  Normal Sales:                 524,878 (96.86%)
+  Cancelled Orders:               9,288 (1.71%)
+  Negative Quantities:           10,624 (1.96%)
+  Zero Price Items:               2,515 (0.46%)
+  Negative Price Adjustments:         2 (0.00%)
+
+--- FINANCIAL TOTALS & RECONCILIATION ---
+  (A) Gross Normal Sales Revenue:       GBP   10,642,110.80
+  (B) Cancellations / Returns (Non-Dup):GBP     -893,979.73
+  (C) Bad Debt Accounting Adjustments:  GBP      -22,124.12
+  (D) Other Negative Qty Adjustments:   GBP            0.00
+  -------------------------------------------------------------
+  (E) Reconciled Component Sum (A+B+C+D):GBP    9,726,006.95
+  (F) Net Revenue (All Non-Duplicate):  GBP    9,726,006.95
+  Discrepancy (E - F):                  GBP          0.0000
+
+  [Context] Duplicate Revenue Excluded: GBP       21,740.98
+  [Context] Total Table Revenue:        GBP    9,747,747.93
+================================================================================

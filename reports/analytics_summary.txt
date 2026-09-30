@@ -1,0 +1,141 @@
+================================================================================
+SHOPFLOW — BUSINESS ANALYTICS & SQL METRICS REPORT
+================================================================================
+Database Source: C:\Users\HP\OneDrive\Documents\ShopFlow\data\processed\shopflow.db
+
+--- 1. PLATFORM SALES OVERVIEW ---
+  Total Transaction Lines:             541,909.0
+  Non-Duplicate Lines:                 536,641.0
+  Exact Duplicate Lines (Excluded):      5,268.0
+
+  Total Distinct Invoices:              25,900.0
+  Sales Invoices (Completed):           19,960.0
+  Cancellation Invoices:                 3,836.0
+
+  Total Units Sold:                  5,572,420.0
+  Units Returned / Refunded:          -275,560.0
+
+  Gross Sales Revenue:              GBP   10,642,110.80
+  Cancellations / Returns Offset:   GBP     -893,979.73
+  Bad Debt Accounting Adjustments:  GBP      -22,124.12
+  Net Commercial Revenue:           GBP    9,726,006.95
+
+  Gross AOV (per Sales Invoice):    GBP          533.17
+  Net AOV (per Distinct Invoice):   GBP          375.52
+
+--- 2. FINANCIAL RECONCILIATION ---
+  (A) Gross Normal Sales:           GBP   10,642,110.80
+  (B) Cancellations Non-Duplicate:  GBP     -893,979.73
+  (C) Bad Debt Adjustments:         GBP      -22,124.12
+  (D) Other Negative Qty (price=0): GBP            0.00
+  -------------------------------------------------------------
+  (E) Component Sum (A+B+C+D):      GBP    9,726,006.95
+  (F) Net Revenue (All Non-Dup):    GBP    9,726,006.95
+  Discrepancy (E - F):              GBP          0.0000
+
+--- 3. MONTHLY SALES TRENDS & GROWTH (MoM) ---
+sales_month  order_count  units_sold  gross_revenue  returns_offset  net_revenue  prev_month_net_revenue  mom_growth_percent
+    2010-12         1559      358019      821452.73       -74729.12    746723.61                     NaN                 NaN
+    2011-01         1086      387099      689811.61      -131363.05    558448.56               746723.61              -25.21
+    2011-02         1100      282934      522545.56       -25519.15    497026.41               558448.56              -11.00
+    2011-03         1454      376599      716215.26       -34201.28    682013.98               497026.41               37.22
+    2011-04         1246      307953      536968.49       -44600.65    492367.84               682013.98              -27.81
+    2011-05         1681      395001      769296.61       -47202.51    722094.10               492367.84               46.66
+    2011-06         1533      388511      760547.01       -70569.78    689977.23               722094.10               -4.45
+    2011-07         1475      399693      718076.12       -37919.13    680156.99               689977.23               -1.42
+    2011-08         1361      421020      757841.38       -54330.80    681386.46               680156.99                0.18
+    2011-09         1837      569573     1056435.19       -38838.51   1017596.68               681386.46               49.34
+    2011-10         2040      621029     1151263.73       -81895.50   1069368.23              1017596.68                5.09
+    2011-11         2769      751377     1503866.78       -47720.98   1456145.80              1069368.23               36.17
+    2011-12          819      313612      637790.33      -205089.27    432701.06              1456145.80              -70.28
+
+--- 4. TOP 10 PRODUCTS BY REVENUE ---
+stock_code                       product_name  gross_revenue  gross_units_sold  order_count
+     22423           REGENCY CAKESTAND 3 TIER      174156.54             13851         1988
+     23843        PAPER CRAFT , LITTLE BIRDIE      168469.60             80995            1
+    85123A WHITE HANGING HEART T-LIGHT HOLDER      104462.75             37641         2198
+     47566                      PARTY BUNTING       99445.23             18283         1685
+    85099B            JUMBO BAG RED RETROSPOT       94159.81             48371         2089
+     23166     MEDIUM CERAMIC TOP STORAGE JAR       81700.92             78033          247
+     23084                 RABBIT NIGHT LIGHT       66870.03             30739          994
+     22086     PAPER CHAIN KIT 50'S CHRISTMAS       64875.59             19329         1160
+     84879      ASSORTED COLOUR BIRD ORNAMENT       58927.62             36362         1455
+     79321                      CHILLI LIGHTS       54096.36             10302          661
+
+--- 5. TOP 10 PRODUCTS BY QUANTITY SOLD ---
+stock_code                       product_name  gross_units_sold  gross_revenue  order_count
+     23843        PAPER CRAFT , LITTLE BIRDIE             80995      168469.60            1
+     23166     MEDIUM CERAMIC TOP STORAGE JAR             78033       81700.92          247
+     22197                     POPCORN HOLDER             56898       51334.47         1392
+     84077  WORLD WAR 2 GLIDERS ASSTD DESIGNS             54951       13814.01          535
+    85099B            JUMBO BAG RED RETROSPOT             48371       94159.81         2089
+    85123A WHITE HANGING HEART T-LIGHT HOLDER             37641      104462.75         2198
+     21212    PACK OF 72 RETROSPOT CAKE CASES             36396       21246.45         1320
+     84879      ASSORTED COLOUR BIRD ORNAMENT             36362       58927.62         1455
+     23084                 RABBIT NIGHT LIGHT             30739       66870.03          994
+     22492             MINI PAINT SET VINTAGE             26633       16937.82          380
+
+--- 6. TOP 10 COUNTRIES BY REVENUE ---
+       country  net_revenue  pct_of_global_net_revenue  sales_orders  identified_customers  guest_orders
+United Kingdom   8167128.18                      83.97         18019                  3950          1373
+   Netherlands    284661.54                       2.93            94                     9             0
+          EIRE    262993.38                       2.70           288                     3            28
+       Germany    221509.47                       2.28           457                    95             0
+        France    197317.11                       2.03           392                    87             3
+     Australia    137009.77                       1.41            57                     9             0
+   Switzerland     56363.05                       0.58            54                    21             3
+         Spain     54756.03                       0.56            90                    31             0
+       Belgium     40910.96                       0.42            98                    25             0
+        Sweden     36585.41                       0.38            36                     8             0
+
+--- 7. CUSTOMER ANALYSIS & SEGMENTATION ---
+  Total Identified Customers:            4,372.0
+  Repeat Customers (>1 order):           2,845.0 (65.07%)
+  One-Time Customers:                    1,493.0
+  Avg Spend per Identified Customer:GBP        1,893.53
+
+Top 10 Highest-Value Customers:
+ customer_id primary_country  net_lifetime_spend  completed_orders  cancellation_orders customer_type
+       14646     Netherlands           279489.02                73                    3        REPEAT
+       18102  United Kingdom           256438.49                60                    2        REPEAT
+       17450  United Kingdom           187322.17                46                    9        REPEAT
+       14911            EIRE           132458.73               201                   47        REPEAT
+       12415       Australia           123725.45                21                    5        REPEAT
+       14156            EIRE           113214.59                55                   11        REPEAT
+       17511  United Kingdom            88125.38                31                   15        REPEAT
+       16684  United Kingdom            65892.08                28                    3        REPEAT
+       13694  United Kingdom            62690.54                50                   10        REPEAT
+       15311  United Kingdom            59284.19                91                   27        REPEAT
+
+--- 8. RETURNS, CANCELLATIONS & ANOMALIES ---
+                       anomaly_category  record_count  distinct_invoices  net_units_impact  net_revenue_impact                                                          observed_behavior
+     Cancelled Invoices (Starts with C)          9251               3836           -275560          -893979.73              Definitive order cancellation or return initiated by customer
+Other Negative Quantity (Non-Cancelled)          1336               1336           -206957                0.00 Inventory write-offs, damaged stock, or manual corrections (UnitPrice = 0)
+  Negative Price Adjustments (Bad Debt)             2                  2                 2           -22124.12  Accounting ledger adjustment (e.g. Adjust bad debt) rather than item sale
+    Zero Price Promotional / Gift Items          1174                819             72597                0.00                             Free samples, gifts, or zero-priced line items
+
+--- 9. DAILY SALES SUMMARY (First 5 and Last 5 Days) ---
+First 5 Days:
+sales_date  order_count  units_sold  units_returned  gross_revenue  returns_offset  net_revenue
+2010-12-01          127       26818            -183       58776.79         -325.23     58451.56
+2010-12-02          142       31264          -10287       47629.42        -1541.10     46088.32
+2010-12-03           68       16158            -291       46898.63        -1323.25     45575.38
+2010-12-05           88       16242             -56       31364.63         -391.00     30973.63
+2010-12-06          102       21619            -299       54624.15         -970.28     53653.87
+Last 5 Days:
+sales_date  order_count  units_sold  units_returned  gross_revenue  returns_offset  net_revenue
+2011-12-05          127       44497            -125       88620.84       -30990.64     57630.20
+2011-12-06          115       30377           -1095       56558.83        -2449.44     54109.39
+2011-12-07          106       41789            -108       75315.55         -362.94     74952.61
+2011-12-08          120       35010            -639       82371.55        -1077.22     81294.33
+2011-12-09           44       93949          -81030      200900.98      -168789.07     32111.91
+
+--- 10. BUSINESS ASSUMPTIONS & LIMITATIONS ---
+1. Guest Checkouts: 135,080 transaction lines have no CustomerID. They are
+   preserved in all aggregate sales, daily velocity, and country revenue calculations,
+   but strictly omitted from customer lifetime value (LTV) rankings.
+2. Returns Treatment: Cancellations (InvoiceNo with 'C') represent £893,979.73 in refunds.
+   Net revenue sums positive sales plus returns offset across non-duplicate transactions.
+3. Non-product items: System codes ('POST' postage, 'BANK CHARGES', 'D' discount)
+   are excluded from product catalog rankings to preserve merchandising insights.
+================================================================================

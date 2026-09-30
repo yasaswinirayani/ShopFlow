@@ -1,0 +1,81 @@
+================================================================================
+SHOPFLOW — DATASET PROFILING & EXPLORATION REPORT
+================================================================================
+
+--- 1. BASIC DATASET METADATA ---
+File Path: C:\Users\HP\OneDrive\Documents\ShopFlow\data\raw\Online Retail.xlsx
+Available Sheets: ['Online Retail']
+Active Sheet Analyzed: Online Retail
+Total Rows: 541,909
+Total Columns: 8
+
+--- 2. COLUMNS & DATA TYPES ---
+     Column          Dtype  Non-Null Count  Null Count  Null %
+  InvoiceNo         object          541909           0    0.00
+  StockCode         object          541909           0    0.00
+Description         object          540455        1454    0.27
+   Quantity          int64          541909           0    0.00
+InvoiceDate datetime64[us]          541909           0    0.00
+  UnitPrice        float64          541909           0    0.00
+ CustomerID        float64          406829      135080   24.93
+    Country            str          541909           0    0.00
+
+--- 3. SAMPLE ROWS (First 5) ---
+  InvoiceNo StockCode                          Description  Quantity         InvoiceDate  UnitPrice  CustomerID         Country
+0    536365    85123A   WHITE HANGING HEART T-LIGHT HOLDER         6 2010-12-01 08:26:00       2.55     17850.0  United Kingdom
+1    536365     71053                  WHITE METAL LANTERN         6 2010-12-01 08:26:00       3.39     17850.0  United Kingdom
+2    536365    84406B       CREAM CUPID HEARTS COAT HANGER         8 2010-12-01 08:26:00       2.75     17850.0  United Kingdom
+3    536365    84029G  KNITTED UNION FLAG HOT WATER BOTTLE         6 2010-12-01 08:26:00       3.39     17850.0  United Kingdom
+4    536365    84029E       RED WOOLLY HOTTIE WHITE HEART.         6 2010-12-01 08:26:00       3.39     17850.0  United Kingdom
+
+--- 4. DUPLICATE RECORDS ---
+Exact Duplicate Rows: 5,268 (0.97%)
+
+--- 5. TEMPORAL COVERAGE (InvoiceDate) ---
+Earliest Invoice Date: 2010-12-01 08:26:00
+Latest Invoice Date:   2011-12-09 12:50:00
+Timespan: 373 days
+
+--- 6. NUMERIC SUMMARY STATISTICS ---
+          Quantity    UnitPrice
+count  541909.0000  541909.0000
+mean        9.5522       4.6111
+std       218.0812      96.7599
+min    -80995.0000  -11062.0600
+25%         1.0000       1.2500
+50%         3.0000       2.0800
+75%        10.0000       4.1300
+max     80995.0000   38970.0000
+
+--- 7. BUSINESS LOGIC & ANOMALY ANALYSIS ---
+Cancelled Invoices (InvoiceNo starts with 'C'): 9,288 (1.71%)
+Total Negative Quantity Records: 10,624
+  - Associated with cancelled invoices ('C'): 9,288
+  - Negative quantity but NOT starting with 'C': 1,336
+Records with Zero Unit Price: 2,515
+Records with Negative Unit Price: 2
+Missing CustomerID Records: 135,080 (24.93%)
+
+--- 8. DATA ENGINEERING & DOMAIN INTERPRETATIONS ---
+1. Cancelled Invoices & Negative Quantities:
+   - Rows with InvoiceNo starting with 'C' indicate order cancellations or customer returns.
+   - The negative Quantity reflects stock returning to inventory and offsets gross sales.
+   - Non-cancelled negative quantities often indicate damaged stock, inventory write-offs,
+     or administrative corrections (e.g. 'lost', 'damaged', 'check').
+
+2. Zero & Negative Unit Prices:
+   - Zero UnitPrice records frequently correspond to promotional free gifts, samples,
+     or internal adjustments.
+   - Negative UnitPrice records (e.g. 'Adjust bad debt') are accounting adjustments rather
+     than consumer product sales.
+
+3. Missing Customer IDs (~25% of dataset):
+   - Missing CustomerIDs represent anonymous or guest checkouts where the buyer did not
+     log into a registered account.
+   - While these cannot be used for customer-level cohort or retention analytics, they ARE
+     valid revenue transactions for total sales and product performance metrics.
+
+4. Duplicate Records:
+   - 5,268 rows are complete duplicates across all columns.
+   - In a production pipeline, exact duplicates should be deduplicated to avoid double-counting sales.
+================================================================================

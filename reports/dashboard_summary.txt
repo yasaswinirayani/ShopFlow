@@ -1,0 +1,63 @@
+================================================================================
+SHOPFLOW — INTERACTIVE STREAMLIT DASHBOARD SUMMARY
+================================================================================
+Execution Timestamp: 2026-09-30 18:48:00
+Status: ACTIVE & VERIFIED
+
+--- 1. APPLICATION & SERVER STARTUP ---
+Startup Command:
+  .\.venv\Scripts\python.exe -m streamlit run dashboard/app.py --server.headless true --server.port 8501
+
+Local Access URL:   http://localhost:8501
+Network URL:        http://10.16.38.11:8501
+HTTP Status Check:  200 OK (Verified via HTTP GET)
+
+--- 2. CORE DASHBOARD FEATURES & USER INTERACTION ---
+A. Sidebar Controls:
+  - Date Range Picker: Bounded dynamically between 2010-12-01 and 2011-12-09.
+  - Country Dropdown: 38 global markets + 'All' global aggregate.
+  - Merchandising Search: Real-time search across StockCode and Description.
+  - Reset Control: Clears active filters and re-evaluates queries instantly.
+
+B. Executive KPI Cards:
+  - Net Commercial Revenue: £9,726,006.95
+  - Gross Commercial Sales: £10,642,110.80
+  - Completed Sales Orders: 19,960 distinct invoices
+  - Gross Average Order Value (AOV): £533.17 per completed sales order
+  - Units Sold vs Returned: 5,572,420 units sold, -275,560 units returned
+  - Identified Registered Customers: 4,372 distinct accounts
+
+C. Analytical Tabs:
+  1. Sales Trends: Interactive daily net revenue bar chart + 7-day rolling average line chart,
+     monthly revenue bars, and Month-over-Month (MoM) growth table.
+  2. Merchandising Performance: Top 10 products by revenue (£) and volume (units),
+     with canonical commercial descriptions resolved, plus a sortable data table.
+  3. Geographic Performance: Horizontal bar chart of top markets, donut chart of market share
+     concentration, and data table tracking guest checkouts alongside identified buyers.
+  4. Customer Intelligence: Repeat-buyer rate (65.1%), one-time buyers (34.9%), average spend
+     (£1,893.53), and Top 20 Lifetime Value (LTV) customer ranking.
+  5. Data Quality & Audits: Summary table of cancellations, write-offs, bad debt adjustments,
+     and exact SQL financial reconciliation showing £0.0000 discrepancy.
+
+--- 3. FINANCIAL DEFINITIONS & RECONCILIATION ---
+- Gross Normal Sales: SUM(line_revenue) WHERE is_normal_sale = 1 (£10,642,110.80)
+- Cancellations / Returns: SUM(line_revenue) WHERE is_cancelled = 1 AND is_duplicate = 0 (-£893,979.73)
+- Bad Debt Adjustments: SUM(line_revenue) WHERE is_negative_price = 1 AND is_duplicate = 0 (-£22,124.12)
+- Reconciled Net Revenue: SUM(line_revenue) WHERE is_duplicate = 0 (£9,726,006.95)
+- Mathematical Discrepancy: £0.0000
+
+--- 4. AUTOMATED TEST SUITE ---
+Test Command: .\.venv\Scripts\python.exe -m pytest -v
+Results:      40 PASSED in 1.76s (100% passing)
+Coverage:     Transformations, Schema Validation, Transactional Loading,
+              ETL Orchestration Pipeline, Analytical SQL, and Dashboard Helpers.
+
+--- 5. DATA OBSERVATIONS & LIMITATIONS ---
+1. Guest Checkouts: 135,080 transaction lines have no CustomerID. They are
+   preserved in aggregate sales, daily velocity, and country revenue calculations,
+   but strictly omitted from customer lifetime value (LTV) cohorts.
+2. Direct Browser Automation: The external Playwright browser driver download
+   failed in the local sandbox (404 on azureedge.net driver zip), but the local
+   Streamlit HTTP server is confirmed healthy, listening on port 8501, and responding
+   with HTTP 200 OK.
+================================================================================

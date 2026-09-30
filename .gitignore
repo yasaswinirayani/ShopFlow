@@ -1,0 +1,36 @@
+# Python virtual environment
+.venv/
+venv/
+env/
+ENV/
+
+# Python bytecode and cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Testing and coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Data files (do not commit large raw datasets or generated databases)
+data/raw/*
+!data/raw/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+*.xlsx
+*.csv
+*.db
+*.sqlite
+*.sqlite3
+
+# Streamlit temporary / run files
+.streamlit/secrets.toml
+
+# IDE and OS specific files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+Desktop.ini
