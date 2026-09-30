@@ -208,5 +208,3 @@ To add genuine screenshots of your running application to this repository:
 
 ---
 
-## 📄 License
-This project is open-source and available under the **MIT License**.
